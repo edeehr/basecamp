@@ -4,26 +4,12 @@ Terraform Module: sa_aws_essentials_bootcamp
 
 The following components are built:
 ------
-- Dual-Region (us-east-1, us-west-2)
-- 1 VPC for per region with 2 public and 2 private subnets
-  * Cross-Region VPC Peering Connection
-  * Additional routes to allow cross-VPC connectivity
-- 5 AutoScaling Groups (ASG) per region:
-  * Bastion Host ASG
-  * Build Server ASG
-  * Gateway Server ASG
-  * Auth Server ASG
-  * Dashboard Server ASG
-- AutoScaling Policies for each ASG
-- CloudWatch Metric Alarms for each ASG
-- 3 Application Loadbalancers per region:
-  * Gateway HTTPS ALB (internal)
-  * Auth HTTPS ALB (internal)
-  * Dashboard HTTPS ALB (public)
-- 1 Network Load per region (NLB is provisioned with static EIPs, 2 in each region):
-  * Gateway HTTP NLB (public)
-- CloudTrail is enabled for All Regions
-- Encrypted s3 Bucket for CloudTrail
+- Single-Region (default is us-east-1)
+- 1 VPC with 2 Public and 2 Private Subnets (not used)
+- routing table and entries
+- 2 Web Server instances with custom home pages.
+- 1 Classic ELB
+- 2 Security Groups - ELB and Web Servers
 
 
 
