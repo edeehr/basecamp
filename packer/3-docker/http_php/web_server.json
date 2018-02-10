@@ -1,0 +1,39 @@
+{
+   "variables": {
+     "hub_username": "",
+     "hub_password": ""
+   },
+   "builders": [{
+     "type": "docker",
+     "image": "amazonlinux",
+     "commit": true
+    }],
+   "provisioners": [
+    {
+      "type":"file",
+      "source": "index.php",
+      "destination": "/tmp/index.php"
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "install.sh"
+      ]
+    }
+  ],
+  "post-processors": [
+    [
+      {
+        "type": "docker-tag",
+        "repository": "kmdmlc/testing",
+        "tag": "testingdocker2"
+      },
+      {
+        "type": "docker-push",
+        "login": true,
+        "login_username": "{{user `hub_username`}}",
+        "login_password": "{{user `hub_password`}}"
+      }
+    ]
+  ]
+}
