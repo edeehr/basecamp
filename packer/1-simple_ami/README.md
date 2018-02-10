@@ -1,11 +1,13 @@
-2W Basecamp Packer Template
+Packer Template: 1_simple_ami
 ===========
 
-Packer template to build the Nginx Web Server AWS AMIs.  Intent was to keep this simple as the intended use is for demos or basecamps/workshops.  The template flow is pretty simple:
-- Start with an AWS Linux AMI
-- Install Updates
-- Install nginx
-- Set nginx to automatically start on boot
+- Packer template to build an HTTP Web Server on AWS AMIs
+- Design objective is to keep this simple as it will be used for demos, basecamps and training purposes
+- Flow:
+-- Start with an AWS Linux AMI
+-- Install Updates
+-- Install httpd
+-- Set httpd to automatically start on boot
 
 Web Server
 ----------------------
