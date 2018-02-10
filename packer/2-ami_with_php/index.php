@@ -5,7 +5,7 @@
 
     <body>
 
-        <h1>Welcome to <strong>2nd Watch Test Page </strong> on the Amazon Linux AMI!</h1>
+        <h1>Welcome to <strong>2nd Watch Test Page </strong> running http on the Amazon Linux AMI!</h1>
 
             <p>This page is used to test the proper operation of the
             HTTP server after it has been installed. If you can read

@@ -1,17 +1,17 @@
 #!/bin/sh -x
 
 #####
-# Create an AWS AMI, apply updates, install nginx and set nginx to run on startup.
+# Create an AWS AMI, apply updates, install httpd and set httpd to run on startup.
 #####
 
 # Install updates
 sudo yum update -y
 
-# Install nginx
-sudo yum -y install nginx
+# Install httpd
+sudo yum -y install httpd
 
-# Move customized (and simplistic) homepage to nginx directory
-sudo mv /tmp/index.html /usr/share/nginx/html/index.html
+# Move customized (and simplistic) homepage to httpd directory
+sudo mv /tmp/index.html /var/www/html/index.html
 
-# Run nginx at boot
-sudo chkconfig nginx on
+# Run httpd at boot
+sudo chkconfig httpd on
