@@ -9,7 +9,8 @@ Packer Template: Docker Images
 ----------------------
 | Directory | Purpose |
 |:-------- |:--------|
-http-php | docker image using aws linux with http and php installed
+1-http-php | docker image with aws linux with http and php installed
+2-http-php-docker-repo | docker image with aws linux with http and php installed, pushed to docker.com repo
 
 
 ### Usage
