@@ -2,25 +2,25 @@ Terraform Module: sa_aws_essentials_bootcamp
 ===========
 ##### A Terraform module for AWS that builds environments for AWS Essentials Bootcamps
 
+Repo Purpose:
+------
+- Demonstrate the value of IaC during AWS Essentials Basecamps and for ad-hoc customer demonstrations
+- Easily shared and explained to customers 
+- Demonstrate the primary terraform constructs - providers, variables, modules, resources and outputs
+- This particular example illustrates using multiple modules to split out terraform constructs - providers, variables, modules, resources and outputs into multiple files
+- Deploys fundational environment (vpc, subnets, etc), 2 web servers (separate AZ's) and an elb.
+- Web Servers have public IP addresses and are directly accessable via the internet support SSH into them during the class.
+- Web servers running httpd and php
+- Custom (simple) web page deployed that displays the name of the web server
+
 The following components are built:
 ------
 - Single-Region (default is us-east-1)
-- 1 VPC with 2 Public and 2 Private Subnets (not used)
-- routing table and entries
+- 1 VPC/2 Public and 2 Private Subnets (not used)
+- Internet Gateway and Routing tables
 - 2 Web Server instances with custom home pages.
 - 1 Classic ELB
-- 2 Security Groups - ELB and Web Servers
-
-
-
-- Repo exists to demonstrate the value of IaC during AWS Essentials Basecamps
-- Purpose is to share with customers during workshop. 
-- Module utilizes the primary terraform constructs - providers, variables, modules, resources and outputs
-- This example uses Terraform best practices to split out terraform constructs - providers, variables, modules, resources and outputs into multiple files
-- Deploys fundational environment (vpc, subnets, etc), 2 web servers (separate AZ's) and an elb.
-- Web Servers have public IP addresses and are directly accessable via the internet so that students can SSH into them during the class.
-- Custom (simple) web page deployed that displays the name of the web server
-- Web servers running httpd and php
+- 2 Security Groups - ELB and Web Server
 
 # Prerequisites
 - Terraform installed and functional on local laptop
@@ -28,21 +28,21 @@ The following components are built:
 - Access to 2W Github repo to clone the code
 
 # Preparation Ahead of Basecamp
+- configure awsclie to utilize appropriate access/secret keys
 - Copy code to local repo
-- revise tfvars.terraform accordingly
-- terraform init - initialize provider and modules
+- revise tfvars.terraform accordingly (see below) - at least customize the event_description variable
+- terraform init - initialize provide, modules and data files
 - terraform plan
 - terraform apply
-- Verify functionality - see outputs and test resources created
-- terraform Destroy
-- Congrats - you are ready for the basecamp
+- Verify functionality - review outputs and test resources created
+- terraform destroy
+- Congrats!! - you are ready for the basecamp
 
 # Variables
-- Assumes the AWS Access and Secret keys are configured locally as part of AWSCLI config.  If necessary you can provide them as variables in the terraform script (uugghh - don't do that!!)
-- AWS Key Pair that resides in the AWS account. If there are no KeyPairs then create a keypair in the target account/region.  Remember to keep the private key one local machine so that you can login into the web servers
+- Assumes the AWS Access and Secret keys are configured locally as part of AWSCLI config.  Do not put the keys into the terraform modules - practice sound security principles and reinforce this throughout the basecamp.
+- AWS KeyPair in the target account. If there are no KeyPairs then create a keypair in the target account/region.  Remember to keep the private key one local machine so that you can login into the web servers
 - US-EAST-1 is the default region, if you want to utilize a different region then update the script accordingly
 - region, ami-id, vpc module, aws_region and several other variables can be easily modified
-
 
 # Input Variables
 - Default values set for all variables.  Update tfvars.terraform or use command line overrides as needed
@@ -51,18 +51,14 @@ The following components are built:
 - US-EAST-1 is the default region, if you want to utilize a different region then update the script accordingly
 - region, ami-id, vpc module, aws_region and several other variables can be easily modified
 
-Usage
------
-
-```
-TBD
-```
 
 Outputs
 =======
 
+- event description
 - aws elb dns address
 - web server IP addresses
+
 
 Authors
 =======
