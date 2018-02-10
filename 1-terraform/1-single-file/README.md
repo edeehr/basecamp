@@ -61,7 +61,7 @@ Module utilizes the primary terraform constructs - providers, variables, modules
 ### Input Variables
 ------
 - Default values set for all variables in main.tf.  Update main.tf or use command line overrides as needed
-- Assumes the AWS Access and Secret keys are configured locally as part of AWSCLI config.  If necessary you can provide them as variables in the terraform script (uugghh - don't do that!!)
+- Assumes the AWS Access and Secret keys are configured locally as part of AWSCLI config.  They can also be provided via the command line (uugghh - don't do that!!)
 - AWS Key Pair that resides in the AWS account. If there are no KeyPairs then create a keypair in the target account/region.  Remember to keep the private key one local machine so that you can login into the web servers
 - US-EAST-1 is the default region, if you want to utilize a different region then update the script accordingly
 - region, ami-id, vpc module, aws_region and several other variables can be easily modified
