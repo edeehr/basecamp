@@ -10,6 +10,7 @@ Packer Template: 2-http-php-docker-repo
 - 2) Install Updates
 - 3) Install httpd and php
 - 4) Copy custom web page to appropriate directory
+- Lots of opportunities to further parameterize, just not today
 
 ### Packer Files
 ----------------------
