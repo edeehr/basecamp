@@ -83,15 +83,8 @@ private_subnet_cidr | ["10.0.2.0/24", "10.0.3.0/24"]
 web_server_instance_ami | ami-97785bed
 web_server_instance_type | t2.micro
 instance_key_pair | <update with your key pair>
-private_key_location | <ex: /Users/kdillon/.ssh/id_rsa>
+private_key_location | <ex: /Users/clownshoes/.ssh/id_rsa>
 event_description | "Basecamp Demo"
-
-### Instance Detail Variables - interface.tf
-----------------------
-| Variable | Prod Default |
-|:-------- |:-------------|
-environment_tag | 2w_aws_essentials_demo
-vpc_cidr  | 10.0.0.0/16
 
 
 Authors
