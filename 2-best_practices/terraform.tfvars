@@ -1,7 +1,7 @@
 #####
 # specify variable values
 #####
-environment_tag = "2w_essentials_demo"
+environment_tag = "2w_aws_essentials_demo"
 
 vpc_cidr = "10.0.0.0/16"
 
