@@ -1,11 +1,22 @@
-# 2w_basecamp_aws_essentials
-2W Basecamp for AWS Essentials
+Terraform Modules: sa_aws_essentials_basecamp
+===========
+##### A Terraform modules for AWS that builds environments for AWS Essentials Bootcamps
 
-#ToDo:
-- revise readme files - high level description at root level, more specific config needs at lower levels
-- change directory name for 2-best_practices
-- provide directory map in this readme file
-- decide what to do with Packer - keep it here or create a new repo
-- finish bastion host directory changes - see todo file in subdirectory
+### Repo Purpose:
+------
+- Demonstrate the value of IaC during AWS Essentials Basecamps and for ad-hoc customer demonstrations
+- Easily shared and explained to customers 
+- Demonstrate the primary terraform constructs - providers, variables, modules, resources and outputs
 
-# sa_aws_essentials_basecamp
+### Terraform Directories
+----------------------
+| Directory | Purpose |
+|:-------- |:--------|
+1-single-file | All terraform code in a single file for simplicity
+2-multiple-files | Terraform code split out into multiple files per best practice
+packer | packer code - may move to seperate repo
+
+Authors
+=======
+
+[Kevin Dillon](kdillon@2ndwatch.com)
