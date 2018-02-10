@@ -1,6 +1,6 @@
 Terraform Modules: sa_aws_essentials_basecamp
 ===========
-##### A Terraform modules for AWS that builds environments for AWS Essentials Bootcamps
+##### Code repo for SA team for AWS Essentials Bootcamps, workhops and ad-hoc demos
 
 ### Repo Purpose:
 ------
