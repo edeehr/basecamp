@@ -71,8 +71,8 @@ web server ip address | Allow participants to test individual web servers and ss
 |:-------- |:--------|
 main.tf | All resource creation
 outputs.tf | Show variable and resource values
-terraform.tfvars | Creates & configures the RDS MySQL instances
-variables.tf | Creates & configures the RDS MySQL instances
+terraform.tfvars | Provide values for variables
+variables.tf | Define variables
 vpcs.tf | Creates the VPC (https://github.com/2ndWatch/tfm_aws_vpc.git?ref=1.1.1)
 
 ### Environment Input Variables - interface.tf
