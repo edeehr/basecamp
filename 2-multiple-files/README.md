@@ -40,7 +40,7 @@ Terraform Module: 2-multiple_files
 - terraform destroy
 - Congrats!! - you are ready for the basecamp
 
-### Variables
+### Assumption
 ------
 - Assumes the AWS Access and Secret keys are configured locally as part of AWSCLI config.  Do not put the keys into the terraform modules - practice sound security principles and reinforce this throughout the basecamp.
 - AWS KeyPair in the target account. If there are no KeyPairs then create a keypair in the target account/region.  Remember to keep the private key one local machine so that you can login into the web servers
