@@ -7,26 +7,9 @@ Terraform Module: 1-single-file
 - Deploys fundational environment (vpc, subnets, etc), 2 web servers (separate AZ's) and an elb.  
 - Web Servers have public IP addresses and are directly accessable via the internet so that students can SSH into them during the class.
 
-Terraform Module: sa_aws_essentials_bootcamp
-===========
-##### A Terraform module for AWS that builds environments for AWS Essentials Bootcamps
-
-### Repo Purpose:
-------
-- Demonstrate the value of IaC during AWS Essentials Basecamps and for ad-hoc customer demonstrations
-- Using a single file to simplify code review during basecamps/workshops
-Module utilizes the primary terraform constructs - providers, variables, modules, resources and outputs
- 
-- Easily shared and explained to customers
-- Demonstrate the primary terraform constructs - providers, variables, modules, resources and outputs
-- This particular example uses a single file for all Terraform constructs - providers, variables, modules, resources and outputs into multiple files
-- Deploys fundational environment (vpc, subnets, etc), 2 web servers (separate AZ's) and an elb.
-- Web Servers have public IP addresses and are directly accessable via the internet support SSH into them during the class.
-- Web servers running httpd and php
-
 ### The following components are built:
 ------
-- Single-Region (default is us-east-1)
+- Single Region (default is us-east-1)
 - 1 VPC/2 Public and 2 Private Subnets (not used)
 - Internet Gateway and Routing tables
 - 2 Web Server instances with custom home pages.
