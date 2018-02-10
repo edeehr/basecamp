@@ -1,5 +1,31 @@
-Terraform Module: aws_essentials bootcamp - next gen
+Terraform Module: sa_aws_essentials_bootcamp
 ===========
+##### A Terraform module for AWS that builds environments for AWS Essentials Bootcamps
+
+The following components are built:
+------
+- Dual-Region (us-east-1, us-west-2)
+- 1 VPC for per region with 2 public and 2 private subnets
+  * Cross-Region VPC Peering Connection
+  * Additional routes to allow cross-VPC connectivity
+- 5 AutoScaling Groups (ASG) per region:
+  * Bastion Host ASG
+  * Build Server ASG
+  * Gateway Server ASG
+  * Auth Server ASG
+  * Dashboard Server ASG
+- AutoScaling Policies for each ASG
+- CloudWatch Metric Alarms for each ASG
+- 3 Application Loadbalancers per region:
+  * Gateway HTTPS ALB (internal)
+  * Auth HTTPS ALB (internal)
+  * Dashboard HTTPS ALB (public)
+- 1 Network Load per region (NLB is provisioned with static EIPs, 2 in each region):
+  * Gateway HTTP NLB (public)
+- CloudTrail is enabled for All Regions
+- Encrypted s3 Bucket for CloudTrail
+
+
 
 - Repo exists to demonstrate the value of IaC during AWS Essentials Basecamps
 - Purpose is to share with customers during workshop. 
@@ -58,32 +84,6 @@ Authors
 [Kevin Dillon](kdillon@2ndwatch.com)
 
 
-Terraform Module: verizon (Preprod & Prod)
-===========
-##### A Terraform module for AWS that builds the Verizon FIDO environment.
-
-The following components are built:
-------
-- Dual-Region (us-east-1, us-west-2)
-- 1 VPC for per region with 2 public and 2 private subnets
-  * Cross-Region VPC Peering Connection
-  * Additional routes to allow cross-VPC connectivity
-- 5 AutoScaling Groups (ASG) per region:
-  * Bastion Host ASG
-  * Build Server ASG
-  * Gateway Server ASG
-  * Auth Server ASG
-  * Dashboard Server ASG
-- AutoScaling Policies for each ASG
-- CloudWatch Metric Alarms for each ASG
-- 3 Application Loadbalancers per region:
-  * Gateway HTTPS ALB (internal)
-  * Auth HTTPS ALB (internal)
-  * Dashboard HTTPS ALB (public)
-- 1 Network Load per region (NLB is provisioned with static EIPs, 2 in each region):
-  * Gateway HTTP NLB (public)
-- CloudTrail is enabled for All Regions
-- Encrypted s3 Bucket for CloudTrail
 
 ### Requirements
 * Terraform s3 Backend set up (configured in main.tf) (https://github.com/2ndWatch/tf_s3_backend_cft)
