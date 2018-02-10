@@ -2,7 +2,6 @@ Packer Template: 1_simple_ami
 ===========
 
 ### Basics
-
 - Packer template to build an HTTP Web Server on AWS AMIs
 - Design objective is to keep this simple as it will be used for demos, basecamps and training purposes
 - Flow:
@@ -19,15 +18,12 @@ web_server.json | packer json code to build the image
 install.sh | Shell script executed during AMI build
 index.html | Simple, custom web page
 
-Usage
+### Usage
 -----
-
 ```
 packer <validate|build> <template>
 ```
 
-
-Authors
-=======
-
+### Authors
+-----
 [Kevin Dillon](kdillon@2ndwatch.com)
