@@ -2,7 +2,8 @@ Packer Template: 2-ami_with_php
 ===========
 
 ### Basics
-- Packer template to build an HTTP Web Server with PHP on AWS AMIs
+- Packer template to build an HTTP Web Server with PHP on AWS AMIs.
+- PHP installed so that the webpage can show the underlying hostname
 - Design objective is to keep this simple as it will be used for demos, basecamps and training purposes
 - Flow:
 - 1) Start with an AWS Linux AMI
