@@ -74,26 +74,21 @@ vpcs.tf | Creates the VPC (https://github.com/2ndWatch/tfm_aws_vpc.git?ref=1.1.1
 ### Environment Input Variables - interface.tf
 ----------------------
 
-| Variable | Prerod Default | Prod Default |
-|:-------- |:-------------|:----------------|
-environment | preprod | prod
-zone_id | Z3RJSNZFTLOFUY | ZN4M6EMUTNTD7
-domain | fdo-qa.myvzw.com | fdo.myvzw.com
+| Variable | Default |
+|:-------- |:-------------|
+environment_tag | 2w_aws_essentials_demo 
+zone_id | Z3RJSNZFTLOFUY 
+domain | fdo-qa.myvzw.com 
 
 ### Instance Detail Variables - interface.tf
 ----------------------
-| Variable | Prod Default | Preprod Default |
-|:-------- |:-------------|:----------------|
-instance_type | m4.large | m4.large
-rds_instance_type | db.m4.large | db.m4.large
-build_asg_size | min 1, max 1 | min 1, max 1
-gateway_asg_size | min 2, max 2 | min 2, max 2
-auth_asg_size | min 2, max 2 | min 2, max 2
-dashboard_asg_size | min 2, max 2 | min 2, max 2
-dr_build_asg_size | min 1, max 1 | min 1, max 1
-dr_gateway_asg_size | min 1, max 1 | min 1, max 1
-dr_auth_asg_size | min 1, max 1 | min 1, max 1
-dr_dashboard_asg_size | min 1, max 1 | min 1, max 1
+| Variable | Prod Default |
+|:-------- |:-------------|
+environment_tag | 2w_aws_essentials_demo
+vpc_cidr  | 10.0.0.0/16
+public_subnet_cidr | ["10.0.0.0/24", "10.0.1.0/24"]
+
+
 
 #### Routing
 -----
