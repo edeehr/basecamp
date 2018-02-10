@@ -59,26 +59,14 @@ Outputs
 - aws elb dns address
 - web server IP addresses
 
+### Terraform Outputs
+----------------------
+| Output | Purpose |
+|:-------- |:--------|
+event_description | This text will be displayed in the custom web pages
+elb dns name | Full elb dns name so participants can test
+web server ip address | Allow participants to test individual web servers and ssh to insta
 
-Authors
-=======
-
-[Kevin Dillon](kdillon@2ndwatch.com)
-
-
-
-### Requirements
-* Terraform s3 Backend set up (configured in main.tf) (https://github.com/2ndWatch/tf_s3_backend_cft)
-
-* The following certificates from ACM have to exist in both us-east-1 and us-west-2:
-  * Preprod:
-    - gateway.fdo-qa.myvzw.com
-    - auth.fdo-qa.myvzw.com
-    - dashboard.fdo-qa.myvzw.com
-  * Prod:
-    - gateway.fdo.myvzw.com
-    - auth.fdo.myvzw.com
-    - dashboard.fdo.myvzw.com
 
 ### Terraform Templates
 ----------------------
@@ -134,5 +122,4 @@ Default values: us-east-1 = 100, us-west-2 = 0
 Authors
 =======
 
-[Carl Knoos](cknoos@2ndwatch.com)
-
+[Kevin Dillon](kdillon@2ndwatch.com)
