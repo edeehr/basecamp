@@ -1,36 +1,31 @@
-2W Basecamp Packer Template
+Packer Template: 2-ami_with_php
 ===========
 
-Packer template to build the Nginx Web Server AWS AMIs.  Intent was to keep this simple as the intended use is for demos or basecamps/workshops.  The template flow is pretty simple:
-- Start with an AWS Linux AMI
-- Install Updates
-- Install nginx
-- Set nginx to automatically start on boot
+### Basics
+- Packer template to build an HTTP Web Server with PHP on AWS AMIs
+- Design objective is to keep this simple as it will be used for demos, basecamps and training purposes
+- Flow:
+- 1) Start with an AWS Linux AMI
+- 2) Install Updates
+- 3) Install httpd
+- 4) Set httpd to automatically start on boot
+- 5) Use custom webpage with php element to show the hostname
 
-Web Server
+### Packer Files
 ----------------------
+| File | Purpose |
+|:-------- |:--------|
+web_server.json | packer json code to build the image
+install.sh | Shell script executed during AMI build
+index.html | Simple, custom web page
 
-- `web_server.json` - Packer Template - trivial setup for nginx
-- `install.sh` - Shell script executed during AMI build
-- `index.html` - Simple, custom web page
 
-Usage
+### Usage
 -----
-
 ```
 packer <validate|build> <template>
 ```
 
-To Do
+### Authors
 -----
-```
-- see root page
-- should I split this into it's own repo.  While I did this tangent from terraform scripts, it may be better alone
-- Change directory name to "aws_linux_web_server_http_php" - pretty accurate description
-- Flesh out AMI tags
-```
-
-Authors
-=======
-
 [Kevin Dillon](kdillon@2ndwatch.com)
