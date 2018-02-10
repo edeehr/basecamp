@@ -8,7 +8,7 @@ Terraform Modules: sa_aws_essentials_basecamp
 - Easily shared and explained to customers 
 - Demonstrate the primary terraform constructs - providers, variables, modules, resources and outputs
 
-### Terraform Directories
+### Directories
 ----------------------
 | Directory | Purpose |
 |:-------- |:--------|
