@@ -2,7 +2,7 @@ Terraform Module: sa_aws_essentials_bootcamp
 ===========
 ##### A Terraform module for AWS that builds environments for AWS Essentials Bootcamps
 
-Repo Purpose:
+### Repo Purpose:
 ------
 - Demonstrate the value of IaC during AWS Essentials Basecamps and for ad-hoc customer demonstrations
 - Easily shared and explained to customers 
@@ -13,7 +13,7 @@ Repo Purpose:
 - Web servers running httpd and php
 - Custom (simple) web page deployed that displays the name of the web server
 
-The following components are built:
+### The following components are built:
 ------
 - Single-Region (default is us-east-1)
 - 1 VPC/2 Public and 2 Private Subnets (not used)
