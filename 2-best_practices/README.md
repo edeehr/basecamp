@@ -82,10 +82,9 @@ public_subnet_cidr | ["10.0.0.0/24", "10.0.1.0/24"]
 private_subnet_cidr | ["10.0.2.0/24", "10.0.3.0/24"]
 web_server_instance_ami | ami-97785bed
 web_server_instance_type | t2.micro
-instance_key_pair |id_rsa
-private_key_location | /Users/kdillon/.ssh/id_rsa
+instance_key_pair | <update with your key pair>
+private_key_location | <ex: /Users/kdillon/.ssh/id_rsa>
 event_description | "Basecamp Demo"
-
 
 ### Instance Detail Variables - interface.tf
 ----------------------
@@ -94,15 +93,6 @@ event_description | "Basecamp Demo"
 environment_tag | 2w_aws_essentials_demo
 vpc_cidr  | 10.0.0.0/16
 
-
-
-#### Routing
------
-
-```
-To alter routing between the two regions, change the 'weighted_routing_policy' block in route53-records.tf
-Default values: us-east-1 = 100, us-west-2 = 0
-```
 
 Authors
 =======
