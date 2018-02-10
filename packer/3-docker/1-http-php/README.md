@@ -1,4 +1,4 @@
-Packer Template: http_php
+Packer Template: 1-http-php
 ===========
 
 ### Basics
