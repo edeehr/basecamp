@@ -23,7 +23,8 @@ data "template_file" "index" {
   template = "${file("files/index.php.tpl")}"
 
   vars {
-    hostname = "web-${format("%03d", count.index + 1)}"
+#    hostname = "web-${format("%03d", count.index + 1)}"
+    event = "${var.event_description}"
   }
 }
 

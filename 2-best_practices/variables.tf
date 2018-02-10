@@ -42,3 +42,8 @@ variable "private_key_location" {
   type = "string"
   description = "private key with path"
 }
+
+variable "event_description" {
+  type = "string"
+  description = "event description to insert into index.php template page"
+}

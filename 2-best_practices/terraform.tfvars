@@ -17,6 +17,8 @@ instance_key_pair = "id_rsa"
 
 private_key_location = "/Users/kdillon/.ssh/id_rsa"
 
+event_description = "Basecamp Demo"
+
 
 /*
 region = "us-east-1"
