@@ -1,4 +1,4 @@
-Terraform Module: sa_aws_essentials_bootcamp
+Terraform Module: 2-multiple_files
 ===========
 ##### A Terraform module for AWS that builds environments for AWS Essentials Bootcamps
 

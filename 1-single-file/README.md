@@ -1,4 +1,4 @@
-Terraform Module: aws_essentials bootcamp
+Terraform Module: 1-single-file
 ===========
 
 - Repo exists to demonstrate the value of IaC during AWS Essentials Basecamps
