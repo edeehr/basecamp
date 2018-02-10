@@ -52,13 +52,6 @@ The following components are built:
 - region, ami-id, vpc module, aws_region and several other variables can be easily modified
 
 
-Outputs
-=======
-
-- event description
-- aws elb dns address
-- web server IP addresses
-
 ### Terraform Outputs
 ----------------------
 | Output | Purpose |
@@ -72,20 +65,11 @@ web server ip address | Allow participants to test individual web servers and ss
 ----------------------
 | Template | Purpose |
 |:-------- |:--------|
-acm.tf | Retrieves the (pre-created) Amazon issued certificates
-alb-listeners.tf | Creates listeners for the Application Load Balancers created by the Auto Scaling module
-ami-lookup.tf | Retrieves the latest AMI IDs for all AMIs used
-auto-scaling-groups.tf | Creates the 4 application ASGs (Build, Gateway, Auth & Dashboard) (https://github.com/2ndWatch/tfm_aws_autoscaling.git?ref=0.6.9)
-bastion-hosts.tf | Creates the Bastion Host ASGs (https://github.com/terraform-community-modules/tf_aws_bastion_s3_keys)
-cloudtrail-setup.tf | Enables & configures CloudTrail
-cloudwatch-metrics-and-policies.tf | Creates the CloudWatch metrics and Auto Scaling policies used by the ASGs
-elb-access-log-buckets.tf | Sets up the s3 bucket used for ELB access logs
-main.tf | Configures the s3 backend and defines the providers
-nlb.tf | Creates the Network Load Balancers used for public ingress to the FIDO application
-rds.tf | Creates & configures the RDS MySQL instances
-route53-records.tf | Creates all Route 53 records (also determines route weight)
-sg-rules.tf | Contains all SecurityGroup rules created
-vpcs.tf | Creates the VPCs and sets up cross-region peering (https://github.com/2ndWatch/tfm_aws_vpc.git?ref=1.1.1)
+main.tf | All resource creation
+outputs.tf | Show variable and resource values
+terraform.tfvars | Creates & configures the RDS MySQL instances
+variables.tf | Creates & configures the RDS MySQL instances
+vpcs.tf | Creates the VPC (https://github.com/2ndWatch/tfm_aws_vpc.git?ref=1.1.1)
 
 ### Environment Input Variables - interface.tf
 ----------------------
