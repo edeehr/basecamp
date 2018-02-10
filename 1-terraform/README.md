@@ -12,8 +12,9 @@ Terraform Modules: sa_aws_essentials_basecamp
 ----------------------
 | Directory | Purpose |
 |:-------- |:--------|
-1-terraform | terraform code for basecamps and ad-hoc demos
-2-packer | packer code
+1-single-file | All terraform code in a single file for simplicity
+2-multiple-files | Terraform code split out into multiple files per best practice
+packer | packer code - may move to seperate repo
 
 Authors
 =======
