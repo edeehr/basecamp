@@ -19,3 +19,4 @@ Authors
 =======
 
 [Kevin Dillon](kdillon@2ndwatch.com)
+[Kdilly](kdillon@2ndwatch.com)
