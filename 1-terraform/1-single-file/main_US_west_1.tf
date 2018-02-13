@@ -1,0 +1,211 @@
+# 
+#####
+# main.tf
+#  
+#
+#
+#####
+# Identify the provider - in this case it will be AWS using us-west-2 region
+#####
+provider "aws" {
+  region = "us-west-2"
+}
+
+#####
+# Setup variables, keeping it simple,  generally variables and values would end up in variables.tf, terraform.tfvars files
+#####
+variable "environment_tag" {
+  type = "string"
+  description = "environment tag"
+  default = "2nd_watch_demo"
+}
+
+variable "vpc_cidr" {
+  type = "string"
+  description = "vpc cidr block"
+  default = "10.0.0.0/16"
+}
+
+variable "public_subnet_cidr" {
+  type = "list"
+  description = "public subnet cidr block"
+  default = ["10.0.0.0/24", "10.0.1.0/24"]
+}
+
+variable "private_subnet_cidr" {
+  type = "list"
+  description = "public subnet cidr block"
+  default = ["10.0.2.0/24", "10.0.3.0/24"]
+}
+
+variable "web_server_instance_ami" {
+  type = "string"
+  description = "ami id for web server"
+  default = "ami-f2d3638a"
+}
+
+variable "web_server_instance_type" {
+  type = "string"
+  description = "Web Server Instance Type"
+  default = "t2.micro"
+}
+
+variable "instance_key_pair" {
+  type = "string"
+  description = "Instance Key Pair"
+  default = "tf_test"
+}
+
+#####
+# Use 2nd Watch VPC module. No need to reinvent the wheel
+#####
+module "vpc-us-east-1" {
+  source               = "git::ssh://git@github.com/2ndWatch/tfm_aws_vpc.git?ref=1.1.1"
+  aws_region           = "us-west-2"
+  name                 = "west-vpc"
+  cidr                 = "${var.vpc_cidr}"
+  availability_zones   = ["us-west-2a", "us-west-2b"]
+  private_subnets      = "${var.public_subnet_cidr}"
+  public_subnets       = "${var.private_subnet_cidr}"
+  nat_gateway          = false
+  flow_logs            = false
+  enable_dns_hostnames = true
+  enable_dns_support   = true
+  s3_endpoint          = false
+  name_prefix          = "${var.environment_tag}-"
+  tags {
+    environment = "${var.environment_tag}"
+  }
+
+}
+
+#####
+# allow ssh and http inbound from anywhere to web servers
+#####
+resource "aws_security_group" "ssh_and_http_inbound_sg" {
+  name                 = "ssh_and_http_inbound"
+  description          = "Allow SSH and HTTP from Anywhere"
+  vpc_id               = "${module.vpc-us-east-1.vpc_id}"
+  tags {
+    environment = "${var.environment_tag}"
+  }
+
+  ingress {
+    from_port          = 22
+    to_port            = 22
+    protocol           = "tcp"
+    cidr_blocks        = ["0.0.0.0/0"]
+  }  
+
+  ingress {
+    from_port          = 80
+    to_port            = 80
+    protocol           = "tcp"
+    cidr_blocks        = ["0.0.0.0/0"]
+  }   
+
+  egress {
+    from_port          = 0
+    to_port            = 0
+    protocol           = "-1"
+    cidr_blocks        =["0.0.0.0/0"]
+  }
+}
+
+resource "aws_security_group" "http_inbound_sg" {
+  name                 = "http_inbound"
+  description          = "Allow HTTP from Anywhere"
+  vpc_id               = "${module.vpc-us-east-1.vpc_id}"
+  tags {
+    environment = "${var.environment_tag}"
+  }
+
+  ingress {
+    from_port          = 80
+    to_port            = 80
+    protocol           = "tcp"
+    cidr_blocks        = ["0.0.0.0/0"]
+  }   
+
+  egress {
+    from_port          = 0
+    to_port            = 0
+    protocol           = "-1"
+    cidr_blocks        =["0.0.0.0/0"]
+  }
+}
+
+#####
+# web server instances - specifying both instances, could use further automation to spin up fleet of arbitray size
+#####
+resource "aws_instance" "web_server-1" {
+  ami                         = "${var.web_server_instance_ami}"
+  instance_type               = "${var.web_server_instance_type}"
+  key_name                    = "${var.instance_key_pair}"
+  subnet_id                   = "${module.vpc-us-east-1.public_subnets[0]}"
+  associate_public_ip_address = true
+  security_groups             =["${aws_security_group.ssh_and_http_inbound_sg.id}"]
+  user_data                   = "${file("files/install.sh")}"
+  tags  {
+    Name = "web_server-1"
+    environment = "${var.environment_tag}"
+  }
+}
+
+resource "aws_instance" "web_server-2" {
+  ami                         = "${var.web_server_instance_ami}"
+  instance_type               = "${var.web_server_instance_type}"
+  key_name                    = "${var.instance_key_pair}"
+  subnet_id                   = "${module.vpc-us-east-1.public_subnets[1]}"
+  associate_public_ip_address = true
+  security_groups             =["${aws_security_group.ssh_and_http_inbound_sg.id}"]
+  user_data                   = "${file("files/install.sh")}"
+  tags  {
+    Name = "web_server-2"
+    environment = "${var.environment_tag}"
+  }
+}
+
+#####
+# elastic classic load balancer
+#####
+resource "aws_elb" "web-elb" {
+  name                        = "web-elb"
+  subnets                     = ["${module.vpc-us-east-1.public_subnets[0]}", "${module.vpc-us-east-1.public_subnets[1]}"]
+  security_groups             = ["${aws_security_group.http_inbound_sg.id}"]
+
+  listener {
+    instance_port     = 80
+    instance_protocol = "http"
+    lb_port           = 80
+    lb_protocol       = "http"
+  }  
+  # low limits to bring instances in/out of service quickly for demo purposes
+  health_check {
+    healthy_threshold   = 2
+    unhealthy_threshold = 2
+    timeout             = 2
+    target              = "TCP:80"
+    interval            = 5
+  }
+
+  # add instances to elb
+  instances = ["${aws_instance.web_server-1.id}", "${aws_instance.web_server-2.id}"]
+
+}
+
+#####
+# Specify Outputs - frequently in outputs.tf but more convenient as part of single file for basecamp
+#####
+output "elb_address" {
+  value = "${aws_elb.web-elb.dns_name}"
+}
+
+output "web_server_1_addresse" {
+  value = "${aws_instance.web_server-1.public_ip}"
+}
+
+output "web_server_2_addresse" {
+  value = "${aws_instance.web_server-2.public_ip}"
+}
+
